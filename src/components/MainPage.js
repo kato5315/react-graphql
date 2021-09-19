@@ -4,6 +4,10 @@ import { useQuery } from "@apollo/react-hooks";
 import { GET_EMPLOYEES, GET_DEPTS } from "../queries";
 import jwtDecode from "jwt-decode";
 import { ExitToApp } from "@material-ui/icons";
+import { Grid } from "@material-ui/core";
+import EmployeeList from "./EmployeeList";
+import EmployeeCreate from "./EmployeeCreate";
+import EmployeeDetails from "./EmployeeDetails";
 
 const MainPage = () => {
   const {
@@ -47,6 +51,29 @@ const MainPage = () => {
           window.location.href = "/";
         }}
       />
+      <EmployeeCreate dataDepts={dataDepts} />
+      <Grid container>
+        <Grid item xs={5}>
+          <EmployeeList dataEmployees={dataEmployees} />
+        </Grid>
+        <Grid item xs={4}>
+          <EmployeeDetails />
+        </Grid>
+        <Grid item xs={3}>
+          <DeptList dataDepts={dataDepts} />
+        </Grid>
+      </Grid>
+      <Grid container>
+        <Grid item xs={2}>
+          <FilterByName />
+        </Grid>
+        <Grid item xs={3}>
+          <FilterByAnd />
+        </Grid>
+        <Grid item xs={7}>
+          <Pagination />
+        </Grid>
+      </Grid>
     </div>
   );
 };
